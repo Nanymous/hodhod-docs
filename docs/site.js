@@ -31,6 +31,7 @@
         title: section.dataset.title || section.id,
         kicker: section.dataset.kicker || "Hodhod docs",
         text: section.dataset.search || "",
+        body: (section.textContent || "").replace(/\s+/g, " ").trim(),
         element: section
       };
     });
@@ -178,13 +179,57 @@
   if (searchTrigger) searchTrigger.addEventListener("click", openSearch);
   if (searchClose) searchClose.addEventListener("click", closeSearch);
 
+  function resultSnippet(entry, tokens) {
+    if (!tokens.length) return entry.text;
+    var body = entry.body;
+    var index = body.toLowerCase().indexOf(tokens[0]);
+    if (index === -1) return entry.text;
+    var start = Math.max(0, index - 52);
+    var end = Math.min(body.length, index + 118);
+    if (start > 0) {
+      var firstSpace = body.indexOf(" ", start);
+      if (firstSpace !== -1 && firstSpace < index) start = firstSpace + 1;
+    }
+    if (end < body.length) {
+      var lastSpace = body.lastIndexOf(" ", end);
+      if (lastSpace > index) end = lastSpace;
+    }
+    return (start > 0 ? "… " : "") + body.slice(start, end).trim() + (end < body.length ? " …" : "");
+  }
+
   function renderSearch(query) {
     if (!searchResults) return;
     var needle = query.trim().toLowerCase();
-    filteredResults = searchIndex.filter(function (entry) {
-      if (!needle) return true;
-      return (entry.title + " " + entry.kicker + " " + entry.text).toLowerCase().indexOf(needle) !== -1;
-    });
+    var tokens = needle.split(/\s+/).filter(Boolean);
+    if (!tokens.length) {
+      filteredResults = searchIndex.slice();
+    } else {
+      filteredResults = searchIndex.map(function (entry, order) {
+        var title = entry.title.toLowerCase();
+        var kicker = entry.kicker.toLowerCase();
+        var keywords = entry.text.toLowerCase();
+        var body = entry.body.toLowerCase();
+        var haystack = title + " " + kicker + " " + keywords + " " + body;
+        var matches = tokens.every(function (token) {
+          return haystack.indexOf(token) !== -1;
+        });
+        if (!matches) return null;
+        var score = 0;
+        tokens.forEach(function (token) {
+          if (title.indexOf(token) !== -1) score += 6;
+          if (kicker.indexOf(token) !== -1) score += 1;
+          if (keywords.indexOf(token) !== -1) score += 3;
+          if (body.indexOf(token) !== -1) score += 1;
+        });
+        return { entry: entry, order: order, score: score };
+      }).filter(function (match) {
+        return match !== null;
+      }).sort(function (a, b) {
+        return b.score - a.score || a.order - b.order;
+      }).map(function (match) {
+        return match.entry;
+      });
+    }
 
     searchResults.innerHTML = "";
     selectedResult = 0;
@@ -215,7 +260,7 @@
 
       var copy = document.createElement("span");
       copy.className = "result-copy";
-      copy.textContent = entry.text;
+      copy.textContent = resultSnippet(entry, tokens);
 
       button.appendChild(kicker);
       button.appendChild(title);
@@ -257,6 +302,11 @@
       renderSearch(searchInput.value);
     });
     searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeSearch();
+        return;
+      }
       if (event.key === "ArrowDown") {
         event.preventDefault();
         moveSelection(1);
@@ -301,6 +351,17 @@
   });
 
   document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      if (searchDialog && searchDialog.open) {
+        closeSearch();
+        return;
+      }
+      if (navDialog && navDialog.open) {
+        closeNav();
+        return;
+      }
+    }
+
     var target = event.target;
     var isTyping = target && (
       target.tagName === "INPUT" ||

@@ -4,15 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hodhod Docs — Private by design, inspectable by default</title>
-  <meta name="description" content="The operator's guide to Hodhod: a Persian-first, self-hosted messenger with browser-side end-to-end encryption for messages and files.">
+  <meta name="description" content="The operator's guide to Hodhod: a Persian-first, self-hosted messenger with browser-side end-to-end encryption for messages and files, plus a screenshot product tour.">
+  <meta name="author" content="Hodhod">
+  <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#020617">
+  <meta property="og:site_name" content="Hodhod Docs">
   <meta property="og:title" content="Hodhod Docs">
-  <meta property="og:description" content="Private by design. Inspectable by default. The operator's guide to Hodhod.">
+  <meta property="og:description" content="Private by design. Inspectable by default. The operator's guide and product tour for Hodhod.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nanymous.github.io/hodhod-docs/">
-  <meta property="og:image" content="https://nanymous.github.io/hodhod-docs/assets/screenshot-auth.jpg">
+  <meta property="og:image" content="https://nanymous.github.io/hodhod-docs/assets/screens/01-auth.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Hodhod sign-in screen with a Persian, right-to-left layout">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hodhod Docs">
+  <meta name="twitter:description" content="Install Hodhod at any path or port. Read the security model, API reference, and operator guide.">
+  <meta name="twitter:image" content="https://nanymous.github.io/hodhod-docs/assets/screens/01-auth.jpg">
+  <meta name="twitter:image:alt" content="Hodhod sign-in screen with a Persian, right-to-left layout">
   <link rel="canonical" href="https://nanymous.github.io/hodhod-docs/">
+  <link rel="sitemap" href="sitemap.xml" type="application/xml" title="Sitemap">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="site.css">
   <script>
@@ -23,6 +34,22 @@
         if (saved === "dark") document.documentElement.dataset.theme = "dark";
       } catch (error) {}
     })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Hodhod operator documentation",
+    "description": "Install, operate, and review Hodhod: a Persian-first, self-hosted messenger with browser-side end-to-end encryption.",
+    "url": "https://nanymous.github.io/hodhod-docs/",
+    "inLanguage": "en",
+    "dateModified": "2026-10-26",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Hodhod Docs",
+      "url": "https://nanymous.github.io/hodhod-docs/"
+    }
+  }
   </script>
 </head>
 <body>
@@ -129,6 +156,7 @@
 
       <nav class="header-nav" aria-label="Primary navigation">
         <a href="#quickstart">Quick start</a>
+        <a href="#tour">Tour</a>
         <a href="#security">Security</a>
         <a href="#api">API</a>
         <a href="#limits">Limits</a>
@@ -161,12 +189,13 @@
         <nav class="sidebar-nav" id="sidebar-nav">
           <a class="sidebar-link" href="#overview" data-section="overview"><span>01</span>Overview</a>
           <a class="sidebar-link" href="#quickstart" data-section="quickstart"><span>02</span>Quick start</a>
-          <a class="sidebar-link" href="#architecture" data-section="architecture"><span>03</span>Architecture</a>
-          <a class="sidebar-link" href="#security" data-section="security"><span>04</span>Security model</a>
-          <a class="sidebar-link" href="#api" data-section="api"><span>05</span>API reference</a>
-          <a class="sidebar-link" href="#operations" data-section="operations"><span>06</span>Operations</a>
-          <a class="sidebar-link" href="#testing" data-section="testing"><span>07</span>Testing</a>
-          <a class="sidebar-link" href="#limits" data-section="limits"><span>08</span>Limitations</a>
+          <a class="sidebar-link" href="#tour" data-section="tour"><span>03</span>Product tour</a>
+          <a class="sidebar-link" href="#architecture" data-section="architecture"><span>04</span>Architecture</a>
+          <a class="sidebar-link" href="#security" data-section="security"><span>05</span>Security model</a>
+          <a class="sidebar-link" href="#api" data-section="api"><span>06</span>API reference</a>
+          <a class="sidebar-link" href="#operations" data-section="operations"><span>07</span>Operations</a>
+          <a class="sidebar-link" href="#testing" data-section="testing"><span>08</span>Testing</a>
+          <a class="sidebar-link" href="#limits" data-section="limits"><span>09</span>Limitations</a>
         </nav>
       </div>
 
@@ -206,6 +235,7 @@
               <span class="tag"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-lock"/></svg>AES-256-GCM</span>
               <span class="tag"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-layers"/></svg>Persian-first</span>
               <span class="tag"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-server"/></svg>PHP 8.2</span>
+              <span class="tag"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-terminal"/></svg>Any path / port</span>
             </div>
           </div>
 
@@ -241,11 +271,11 @@
         </div>
       </section>
 
-      <section class="section" id="quickstart" data-od-id="quickstart" data-title="Quick start" data-kicker="01 / DEPLOY" data-search="quick start install setup xampp apache php npm build config database launcher windows linux first run">
+      <section class="section" id="quickstart" data-od-id="quickstart" data-title="Quick start" data-kicker="01 / DEPLOY" data-search="quick start install installer setup xampp apache php npm build config database launcher windows linux first run path port vhost documentroot root 8880 install.json">
         <div class="section-head">
           <p class="eyebrow">01 / DEPLOY</p>
           <h2>From checkout to first message in five minutes.</h2>
-          <p class="section-lead">Hodhod runs on XAMPP, Apache, PHP, and MariaDB. The Windows launcher is a convenience; every step below works manually on Linux too. The application source is private, so this public guide assumes an authorized checkout.</p>
+          <p class="section-lead">Hodhod runs on XAMPP, Apache, PHP, and MariaDB. The first-run installer detects the current folder, lets you choose the final path and port, and previews the app URL before it touches the database. The Windows launcher is a convenience; every step below works manually on Linux too. The application source is private, so this guide assumes an authorized checkout.</p>
         </div>
 
         <div class="quick-grid">
@@ -257,14 +287,14 @@
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Apache with <code>mod_rewrite</code>, <code>mod_headers</code>, and <code>AllowOverride All</code>.</span></li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Node.js 20+ and npm for the SPA build.</span></li>
             </ul>
-            <p class="muted-note">The Windows launcher expects the project at <code>E:\xampp\htdocs\messanger</code>.</p>
+            <p class="muted-note">The Windows launcher detects the project folder under <code>htdocs</code>, reads <code>config/install.json</code> after the first install, and can start Apache on the saved port. A root install or a custom hostname needs a <code>DocumentRoot</code> or VirtualHost that points at this folder.</p>
           </div>
 
           <div class="step-card">
             <ol class="steps">
               <li><span class="step-num">1</span><div><strong>Configure</strong><p>Copy the example config, then set a random secret and your database credentials.</p></div></li>
               <li><span class="step-num">2</span><div><strong>Build</strong><p>Install the front-end dependencies and generate <code>public/app</code>.</p></div></li>
-              <li><span class="step-num">3</span><div><strong>Launch</strong><p>Start MySQL and Apache, open the installer once, then use the app.</p></div></li>
+              <li><span class="step-num">3</span><div><strong>Install and launch</strong><p>Open the installer, confirm the path and port, create the admin identity, then open the app.</p></div></li>
             </ol>
           </div>
         </div>
@@ -286,7 +316,7 @@ cd web
 npm ci
 npm run build
 cd ..
-
+# First run opens the installer; choose the final path and port there.
 .\start-hodhod.bat</code></pre>
         </div>
 
@@ -294,15 +324,38 @@ cd ..
           <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
           <div>
             <strong>First run is a browser ceremony.</strong>
-            <p>Open <code>http://localhost/messanger/</code> once. The installer creates the schema and generates the first admin identity in the browser. Download the encrypted identity backup when prompted; the server never receives it.</p>
+            <p>Open the detected installer URL once. Confirm the install path and the port Apache listens on, then create the first admin identity in the browser. The installer writes <code>config/install.json</code> and creates the schema; download the encrypted identity backup when prompted, because the server never receives it.</p>
           </div>
         </div>
 
         <div class="mini-grid">
-          <div class="mini-card"><span class="mini-label">Install</span><code>http://localhost/messanger/</code></div>
+          <div class="mini-card"><span class="mini-label">Installer</span><code>http://localhost/messanger/</code></div>
           <div class="mini-card"><span class="mini-label">App</span><code>http://localhost/messanger/app/</code></div>
-          <div class="mini-card"><span class="mini-label">Legacy admin</span><code>http://localhost/messanger/admin/</code></div>
+          <div class="mini-card"><span class="mini-label">Custom path + port</span><code>http://localhost:8880/</code></div>
         </div>
+
+        <div class="tour-grid">
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost:8880/</span>
+              <span class="browser-badge">SETUP / PATH + PORT</span>
+            </div>
+            <img src="assets/screens/18-installer-path-port.jpg" width="1280" height="889" loading="lazy" decoding="async" alt="Hodhod installer choosing the root path and port 8880, with a live app URL preview and a port status warning">
+            <figcaption><strong>Step 1: choose the address.</strong> The installer detects the current folder, accepts a root or nested path, and checks whether the chosen port is already active before the database is touched.</figcaption>
+          </figure>
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost:8880/</span>
+              <span class="browser-badge">SETUP / COMPLETE</span>
+            </div>
+            <img src="assets/screens/19-installer-success.jpg" width="1280" height="1065" loading="lazy" decoding="async" alt="Hodhod installer success panel with an encrypted identity backup download, saved path and port, and warnings for a path or port that is not active yet">
+            <figcaption><strong>Step 3: keep the backup.</strong> The success panel records the saved path and port and warns when Apache is still serving a different address. The identity backup is generated locally and only offered once.</figcaption>
+          </figure>
+        </div>
+
+        <p class="muted-note">A root install such as <code>http://localhost:8880/</code> needs files at the Apache document root or a VirtualHost <code>DocumentRoot</code> that points at this folder. The installer records the address and reports what is not active; it does not move files or edit Apache configuration.</p>
 
         <figure class="product-shot">
           <div class="browser-chrome" aria-hidden="true">
@@ -310,16 +363,186 @@ cd ..
             <span class="browser-url">localhost/messanger/app/</span>
             <span class="browser-badge">RTL / FA</span>
           </div>
-          <img src="assets/screenshot-auth.jpg" width="1440" height="900" loading="lazy" alt="The Hodhod login screen with a Persian, right-to-left layout">
+          <img src="assets/screens/01-auth.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="The Hodhod login screen with a Persian, right-to-left layout">
           <figcaption>The first-run experience: Persian-first, RTL, and entirely self-hosted.</figcaption>
         </figure>
       </section>
 
-      <section class="section" id="architecture" data-od-id="architecture" data-title="Architecture" data-kicker="02 / MAP" data-search="architecture data flow browser server api mariadb storage files hhf1 request lifecycle project layout react php">
+      <section class="section" id="tour" data-od-id="tour" data-title="Product tour" data-kicker="02 / TOUR" data-search="product tour screenshots interface sign in join request chat workspace light dark message actions image lightbox groups group info new group profile avatar privacy security appearance english admin dashboard users mobile responsive">
         <div class="section-head">
-          <p class="eyebrow">02 / MAP</p>
+          <p class="eyebrow">02 / TOUR</p>
+          <h2>Every surface, before you install it.</h2>
+          <p class="section-lead">Real captures from the reference build at 1440 px wide, plus a 390×844 mobile pass. The default interface is Persian and RTL; the English locale and both themes are shown side by side. Names and messages are demo data.</p>
+        </div>
+
+        <div class="tour-grid">
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">SIGN IN</span>
+            </div>
+            <img src="assets/screens/01-auth.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Hodhod sign-in screen with Persian RTL fields, language switch, and theme switch">
+            <figcaption><strong>Sign in.</strong> Language and theme stay reachable, and the identity unlocks in the browser before history is readable.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/</span>
+              <span class="browser-badge">INVITE ONLY</span>
+            </div>
+            <img src="assets/screens/17-join.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Hodhod join-request form with an invite-only notice">
+            <figcaption><strong>Join request.</strong> New accounts enter an admin review queue with a short note. There is no public self-registration form.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">LIGHT</span>
+            </div>
+            <img src="assets/screens/02-chat-light.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Light-theme conversation with grouped replies, reactions, and an inline image with caption">
+            <figcaption><strong>Light workspace.</strong> Navigation rail, searchable chat list, and a virtualized timeline share one calm surface. Replies, reaction chips, receipts, and captions stay attached to their message.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">DARK</span>
+            </div>
+            <img src="assets/screens/03-chat-dark.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Dark-theme conversation with the same message layout">
+            <figcaption><strong>Dark workspace.</strong> The same hierarchy retuned for low light. Bubble shapes, reaction states, and the composer stay consistent across themes.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">ACTIONS</span>
+            </div>
+            <img src="assets/screens/04-message-actions.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Message action menu open above neighboring message rows">
+            <figcaption><strong>Actions that stay on top.</strong> Reply, react, edit, or delete from the three-dot menu. It is layered above the timeline, so moving to another row never pushes it underneath a message. Deleted messages expose no reaction controls.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">LIGHTBOX</span>
+            </div>
+            <img src="assets/screens/05-image-lightbox.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Full-screen lightbox showing a decrypted image and its caption">
+            <figcaption><strong>Decrypted media, large.</strong> Images decrypt locally, render inline with their encrypted caption, and open in a full-screen viewer with a download action.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">GROUP</span>
+            </div>
+            <img src="assets/screens/06-chat-info.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Group information panel showing members, roles, and group key version">
+            <figcaption><strong>Group details.</strong> Members, roles, verification, mute, archive, and the current group-key version live together. Ownership and rekey actions are separate from everyday actions.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">NEW GROUP</span>
+            </div>
+            <img src="assets/screens/07-new-group.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="New group dialog with member picker and group fields">
+            <figcaption><strong>Starting a group.</strong> Pick members, name the group, and create it in one pass. The first group key is wrapped per member at creation time.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">PROFILE</span>
+            </div>
+            <img src="assets/screens/08-settings-profile.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Settings profile tab with display name, bio, and avatar controls">
+            <figcaption><strong>Profile settings.</strong> Display name, bio, avatar color, and a profile photo sit together with upload, replace, and remove actions. Photos accept JPEG, PNG, or WebP up to 3 MB.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">VISIBILITY</span>
+            </div>
+            <img src="assets/screens/12-profile.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Profile editor with photo, visibility choices, and save action">
+            <figcaption><strong>Photo visibility.</strong> Show a photo to everyone or only to people who share a chat. The API enforces the choice and revalidates it on every request.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">PRIVACY</span>
+            </div>
+            <img src="assets/screens/09-settings-privacy.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Privacy settings for last seen and search discoverability">
+            <figcaption><strong>Privacy controls.</strong> Decide whether last-seen activity is shared and whether the account is discoverable in search, with the effect explained next to each control.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">SECURITY</span>
+            </div>
+            <img src="assets/screens/10-settings-security.jpg" width="1440" height="1000" loading="lazy" decoding="async" alt="Security settings showing password change, lock, and session revocation">
+            <figcaption><strong>Sessions and password.</strong> Review active devices with readable names, revoke them remotely, sign out everywhere, or rewrap the identity with a new password.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">APPEARANCE</span>
+            </div>
+            <img src="assets/screens/11-settings-appearance.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Appearance settings with theme, language, and text size controls">
+            <figcaption><strong>Appearance.</strong> Theme, interface language, and text scale change in place. The layout and direction respond immediately.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">EN / LTR</span>
+            </div>
+            <img src="assets/screens/15-english.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="English LTR interface with the same conversation layout">
+            <figcaption><strong>English, not an afterthought.</strong> A complete LTR locale mirrors the Persian key set: labels, hints, errors, relative times, and dialog copy.</figcaption>
+          </figure>
+
+          <figure class="product-shot tour-shot tour-wide">
+            <div class="browser-chrome" aria-hidden="true">
+              <span class="browser-dots"><span></span><span></span><span></span></span>
+              <span class="browser-url">localhost/messanger/app/</span>
+              <span class="browser-badge">ADMIN</span>
+            </div>
+            <img src="assets/screens/13-admin-dashboard.jpg" width="1440" height="900" loading="lazy" decoding="async" alt="Admin dashboard with deployment statistics, join-request review, and broadcast controls">
+            <figcaption><strong>Operational overview.</strong> Deployment statistics, pending join requests, file usage, broadcasts, and recent audit activity sit together. User moderation covers approval, verification, suspension, and session revocation; administrative actions reach the audit log.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="product-shot tour-shot tour-mobile">
+          <div class="browser-chrome" aria-hidden="true">
+            <span class="browser-dots"><span></span><span></span><span></span></span>
+            <span class="browser-url">localhost/messanger/app/</span>
+            <span class="browser-badge">390 × 844</span>
+          </div>
+          <img src="assets/screens/16-mobile-chat.jpg" width="390" height="844" loading="lazy" decoding="async" alt="Mobile conversation layout at 390 by 844 with drawer navigation">
+          <figcaption><strong>Small screens.</strong> The navigation rail becomes a drawer, the composer respects the safe area, and messages, reactions, and attachments stay usable without horizontal scrolling.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="architecture" data-od-id="architecture" data-title="Architecture" data-kicker="03 / MAP" data-search="architecture data flow browser server api mariadb storage files hhf1 avatars request lifecycle project layout react php frontend rtl themes accessibility base path port install url paths">
+        <div class="section-head">
+          <p class="eyebrow">03 / MAP</p>
           <h2>The server is a relay. The browser holds the keys.</h2>
-          <p class="section-lead">Hodhod keeps the content boundary in the client. The API authenticates, stores envelopes, coordinates membership, and serves ciphertext; it is not a decryption service.</p>
+          <p class="section-lead">Hodhod keeps the content boundary in the client. The API authenticates, stores envelopes, coordinates membership, and serves ciphertext; it is not a decryption service. The front controller derives the install base path from its own location, so the same build runs at <code>/messanger/</code>, <code>/hodhod/</code>, or the domain root, and the browser resolves API, E2EE, and SSE URLs from the current address.</p>
         </div>
 
         <div class="flow" role="img" aria-label="Browser encrypts content, sends ciphertext and metadata over HTTPS to the PHP API, which stores data in MariaDB and encrypted files on disk.">
@@ -378,20 +601,22 @@ cd ..
           <summary><span>Request lifecycle and project map</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="details-body">
             <ol class="lifecycle">
-              <li><span>01</span><p>Apache routes the request through <code>index.php</code> and the API front controller.</p></li>
+              <li><span>01</span><p>Apache routes the request through <code>index.php</code>; the API dispatcher derives the module path from the request URI rather than a hardcoded folder name.</p></li>
               <li><span>02</span><p>The PHP layer validates the session, CSRF token, device binding, rate limit, and membership.</p></li>
               <li><span>03</span><p>The database stores or returns ciphertext envelopes. The server never unwraps them.</p></li>
               <li><span>04</span><p>The browser verifies AAD bindings, unwraps the content key, and decrypts locally.</p></li>
             </ol>
             <div class="code-shell code-shell-compact" data-code>
               <div class="code-head"><span class="code-label">Project map</span><button class="copy-btn" type="button" data-copy aria-label="Copy project map"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></div>
-              <pre><code>index.php                 front controller
+              <pre><code>index.php                 front controller, base path detection
 config/                   schema, migrations, local config
+config/install.json       saved install path + port (generated)
 server/api/               auth, users, chats, messages, files, stream, admin
-server/lib/               bootstrap, auth, DB, cache, files, settings
+server/lib/               bootstrap, auth, DB, cache, files, avatars, settings
 public/js/e2ee.js         canonical E2EE implementation
 public/app/               generated React SPA build
 storage/                  encrypted uploads
+web/src/lib/paths.ts      URL base detection for API, E2EE, and SSE
 web/                      React + TypeScript source
 tests/                    E2EE and live API suites</code></pre>
             </div>
@@ -400,9 +625,9 @@ tests/                    E2EE and live API suites</code></pre>
         </details>
       </section>
 
-      <section class="section" id="security" data-od-id="security" data-title="Security model" data-kicker="03 / SECURITY" data-search="security cryptography ecdh rsa aes gcm hkdf pbkdf2 argon2 identity keys threat model metadata audit safety numbers group keys">
+      <section class="section" id="security" data-od-id="security" data-title="Security model" data-kicker="04 / SECURITY" data-search="security cryptography ecdh rsa aes gcm hkdf pbkdf2 argon2 identity keys threat model metadata audit safety numbers group keys profile photos avatars captions">
         <div class="section-head">
-          <p class="eyebrow">03 / SECURITY</p>
+          <p class="eyebrow">04 / SECURITY</p>
           <h2>Encrypted content. Honest metadata.</h2>
           <p class="section-lead">Messages and files are encrypted before they leave the browser. The server still sees who is talking, when, and how much. That is the trade-off, stated plainly.</p>
         </div>
@@ -421,6 +646,7 @@ tests/                    E2EE and live API suites</code></pre>
               <tr><td>Portable backup</td><td><code>PBKDF2-SHA-256</code> + <code>AES-256-GCM</code>, 600,000 iterations</td></tr>
               <tr><td>Login</td><td>Client-side <code>authHash</code>, then <code>Argon2id</code> on the server</td></tr>
               <tr><td>Sessions</td><td>HTTP-only SameSite cookie, CSRF token, device binding</td></tr>
+              <tr><td>Profile photos</td><td>Server-stored, access-checked, re-encoded; <strong>not</strong> end-to-end encrypted</td></tr>
               <tr><td>Audit status</td><td>Automated tests only; no independent audit</td></tr>
             </tbody>
           </table>
@@ -434,13 +660,14 @@ tests/                    E2EE and live API suites</code></pre>
               <li>Chat titles, membership, timestamps, and counts.</li>
               <li>Ciphertext envelopes, sizes, IDs, replies, and reactions.</li>
               <li>Encrypted file blobs, hashes, uploaders, and chat IDs.</li>
+              <li>Uploaded profile photos; image captions stay encrypted.</li>
               <li>Identity public keys, devices, sessions, and audit events.</li>
             </ul>
           </div>
           <div class="boundary-card boundary-cannot">
             <div class="boundary-head"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><h3>The server cannot read</h3></div>
             <ul class="dot-list">
-              <li>Message plaintext or file bytes.</li>
+              <li>Message plaintext, image captions, or file bytes.</li>
               <li>Identity private keys or password KEKs.</li>
               <li>Group keys in plaintext or unencrypted backups.</li>
               <li>The contents of your recovery ceremony.</li>
@@ -497,11 +724,11 @@ tests/                    E2EE and live API suites</code></pre>
         </details>
       </section>
 
-      <section class="section" id="api" data-od-id="api" data-title="API reference" data-kicker="04 / REFERENCE" data-search="api reference endpoints messages chats files auth admin stream csrf device envelope request response">
+      <section class="section" id="api" data-od-id="api" data-title="API reference" data-kicker="05 / REFERENCE" data-search="api reference endpoints messages chats files avatars auth admin stream csrf device envelope request response base path install url relative">
         <div class="section-head">
-          <p class="eyebrow">04 / REFERENCE</p>
+          <p class="eyebrow">05 / REFERENCE</p>
           <h2>A small API with a clear boundary.</h2>
-          <p class="section-lead">The JSON API lives under <code>/messanger/api</code>. State-changing requests require the session's CSRF header; device-aware requests send a device ID. Encrypted content is validated as an envelope before it is stored.</p>
+          <p class="section-lead">The JSON API is relative to the install base: <code>&lt;base&gt;/api</code>. At the default path that is <code>/messanger/api</code>; at the domain root it is <code>/api</code>. State-changing requests require the session's CSRF header; device-aware requests send a device ID. Encrypted content is validated as an envelope before it is stored.</p>
         </div>
 
         <div class="table-wrap">
@@ -509,8 +736,8 @@ tests/                    E2EE and live API suites</code></pre>
             <caption class="sr-only">API route groups</caption>
             <thead><tr><th scope="col">Prefix</th><th scope="col">Responsibility</th></tr></thead>
             <tbody>
-              <tr><td><code>/auth</code></td><td>Join requests, login, logout, identity unlock, devices, sessions, password change</td></tr>
-              <tr><td><code>/users</code></td><td>Profiles, search, public identities, safety-number inputs</td></tr>
+              <tr><td><code>/auth</code></td><td>Join requests, login, logout, identity unlock, devices, named sessions, password change</td></tr>
+              <tr><td><code>/users</code></td><td>Profiles, avatars (<code>GET</code>/<code>POST</code>/<code>DELETE</code>), search, public identities, safety-number inputs</td></tr>
               <tr><td><code>/chats</code></td><td>Direct chats, groups, channels, members, rekey, preferences</td></tr>
               <tr><td><code>/messages</code></td><td>Send, edit, delete, react, typing, read markers, pagination</td></tr>
               <tr><td><code>/files</code></td><td>Encrypted upload, download, limits, cleanup</td></tr>
@@ -526,7 +753,8 @@ tests/                    E2EE and live API suites</code></pre>
               <span class="code-label"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-code"/></svg>POST /api/messages</span>
               <button class="copy-btn" type="button" data-copy aria-label="Copy API example"><svg class="icon icon-xs" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button>
             </div>
-            <pre><code>POST /messanger/api/messages
+            <pre><code># &lt;install-base&gt; is /messanger by default; empty for a root install.
+POST &lt;install-base&gt;/api/messages
 X-CSRF: &lt;session-token&gt;
 X-Device-Id: &lt;device-id&gt;
 
@@ -562,14 +790,16 @@ X-Device-Id: &lt;device-id&gt;
           </div>
         </div>
 
+        <p class="muted-note">The SPA derives the API base, the shared E2EE script URL, and the SSE stream from <code>window.location</code>. Moving the installation to another folder or port does not require a rebuild.</p>
+
         <p class="doc-link-row"><a class="text-link" href="https://github.com/Nanymous/hodhod-docs/blob/main/ARCHITECTURE.md" target="_blank" rel="noopener noreferrer">Request shapes and data flow <svg class="icon icon-xs" aria-hidden="true"><use href="#i-external"/></svg></a></p>
       </section>
 
-      <section class="section" id="operations" data-od-id="operations" data-title="Operations" data-kicker="05 / RUN" data-search="operations production hardening config secret database https hsts upload limits backup redis storage permissions">
+      <section class="section" id="operations" data-od-id="operations" data-title="Operations" data-kicker="06 / RUN" data-search="operations production hardening config secret database https hsts upload limits backup redis storage permissions install.json path port apache listen documentroot vhost">
         <div class="section-head">
-          <p class="eyebrow">05 / RUN</p>
+          <p class="eyebrow">06 / RUN</p>
           <h2>Hardening is part of the product.</h2>
-          <p class="section-lead">A working install is not automatically a safe install. Treat secrets, storage, backups, and transport as production concerns from day one.</p>
+          <p class="section-lead">A working install is not automatically a safe install. Treat secrets, storage, backups, transport, and the public address as production concerns from day one.</p>
         </div>
 
         <div class="table-wrap">
@@ -581,6 +811,7 @@ X-Device-Id: &lt;device-id&gt;
               <tr><td><code>app.secret</code></td><td>Server-side hashing secret; use a random 64-hex value</td></tr>
               <tr><td><code>app.max_upload_bytes</code></td><td>Server-side encrypted upload ceiling</td></tr>
               <tr><td><code>app.storage_dir</code></td><td>Encrypted file storage directory</td></tr>
+              <tr><td><code>install.json</code></td><td>Generated by the installer: base path, port, scheme, host, and install time. The launcher reads it for URLs; it contains no secrets.</td></tr>
               <tr><td><code>db.*</code></td><td>Database host, port, name, credentials, and schema path</td></tr>
               <tr><td><code>security.*</code></td><td>Argon2id cost, login attempts, lockout, and welcome text</td></tr>
               <tr><td><code>limits.*</code></td><td>Per-scope rate limits for auth, send, read, poll, admin, upload, and download</td></tr>
@@ -594,6 +825,7 @@ X-Device-Id: &lt;device-id&gt;
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>HTTPS and HSTS</strong><p>Serve only over TLS. Add HSTS at the web server or reverse proxy.</p></div></div>
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Upload limits</strong><p>Match <code>post_max_size</code> and <code>upload_max_filesize</code> to the intended file ceiling.</p></div></div>
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Blocked source paths</strong><p>Keep <code>config/</code>, <code>server/</code>, <code>storage/</code>, <code>tests/</code>, <code>web/</code>, and <code>.git*</code> inaccessible.</p></div></div>
+          <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Path and port</strong><p>Keep Apache <code>Listen</code>, the VirtualHost <code>DocumentRoot</code>, and the saved <code>base_path</code>/<code>port</code> aligned. The installer records the address but does not move files or edit Apache.</p></div></div>
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Backups</strong><p>Back up both the database and <code>storage/files</code>. Protect both as sensitive data.</p></div></div>
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Redis discipline</strong><p>Leave Redis disabled unless it is reachable; otherwise requests may pay a timeout.</p></div></div>
           <div class="check-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><strong>Disposable tests</strong><p>Run live API tests only against a disposable development database.</p></div></div>
@@ -605,9 +837,9 @@ X-Device-Id: &lt;device-id&gt;
         </div>
       </section>
 
-      <section class="section" id="testing" data-od-id="testing" data-title="Testing" data-kicker="06 / VERIFY" data-search="testing tests api e2ee vitest php lint ci github actions verification commands">
+      <section class="section" id="testing" data-od-id="testing" data-title="Testing" data-kicker="07 / VERIFY" data-search="testing tests api e2ee vitest php lint ci github actions verification commands installer path port alternate directory smoke">
         <div class="section-head">
-          <p class="eyebrow">06 / VERIFY</p>
+          <p class="eyebrow">07 / VERIFY</p>
           <h2>Trust the checks, not the badge.</h2>
           <p class="section-lead">The repository ships with live API integration tests, two encryption suites, front-end unit tests, a production build, and PHP lint. CI runs the core checks on every push.</p>
         </div>
@@ -616,7 +848,7 @@ X-Device-Id: &lt;device-id&gt;
           <div class="test-card"><span class="test-value">57 / 57</span><span class="test-label">Live API integration</span></div>
           <div class="test-card"><span class="test-value">13 / 13</span><span class="test-label">Legacy E2EE</span></div>
           <div class="test-card"><span class="test-value">9 / 9</span><span class="test-label">v3 E2EE</span></div>
-          <div class="test-card"><span class="test-value">8 / 8</span><span class="test-label">Front-end unit</span></div>
+          <div class="test-card"><span class="test-value">12 / 12</span><span class="test-label">Front-end unit</span></div>
         </div>
 
         <div class="code-shell" data-code>
@@ -640,12 +872,12 @@ node tests/test-api.js</code></pre>
           <div><strong>The API suite writes data.</strong><p>It creates users, chats, messages, and files. Run it only against a disposable development database. Set <code>HODHOD_API</code> to override the API base URL.</p></div>
         </div>
 
-        <p class="muted-note">The SPA login and unlock path, the legacy admin dashboard, and the join-request layout at <code>390x640</code> and <code>1024x600</code> are smoke-tested in headless Chrome. Browser E2E automation is not committed yet.</p>
+        <p class="muted-note">The SPA login and unlock path, the legacy admin dashboard, the installer at the default path and at an alternate directory with a custom port, the join-request layout at <code>390x640</code> and <code>1024x600</code>, and the product screens at desktop widths and <code>390x844</code> are smoke-tested in headless Chrome. Browser E2E automation is not committed yet.</p>
       </section>
 
-      <section class="section" id="limits" data-od-id="limits" data-title="Limitations" data-kicker="07 / BOUNDARIES" data-search="limitations limits metadata forward secrecy signatures audit xss compromised client recovery backup">
+      <section class="section" id="limits" data-od-id="limits" data-title="Limitations" data-kicker="08 / BOUNDARIES" data-search="limitations limits metadata forward secrecy signatures audit xss compromised client recovery backup">
         <div class="section-head">
-          <p class="eyebrow">07 / BOUNDARIES</p>
+          <p class="eyebrow">08 / BOUNDARIES</p>
           <h2>What Hodhod does not protect.</h2>
           <p class="section-lead">Security claims are only useful when they include the edges. These are the edges you need to understand before deployment.</p>
         </div>
@@ -657,6 +889,9 @@ node tests/test-api.js</code></pre>
           <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span><h3>Client compromise</h3><p>XSS, a compromised browser, or a malicious JavaScript build can expose plaintext.</p></div>
           <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-warning"/></svg></span><h3>No independent audit</h3><p>The cryptography and implementation are tested engineering, not a formal guarantee.</p></div>
           <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Recovery is final</h3><p>Losing the encrypted identity backup can make historical ciphertext unrecoverable.</p></div>
+          <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span><h3>Installer cannot move files</h3><p>Choosing a path or port records the address and checks whether Apache is already serving it. You still need to place the files there, add <code>Listen</code>, or point a VirtualHost <code>DocumentRoot</code> at the folder.</p></div>
+          <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><h3>Photos are not E2EE</h3><p>Profile photos are re-encoded and access-checked, but the server stores a readable image. The visibility setting is authorization, not encryption.</p></div>
+          <div class="limit-card"><span class="limit-icon"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span><h3>Accessibility audit pending</h3><p>Focus states, labels, keyboard dialogs, and reduced motion are implemented, but there is no independent WCAG audit or conformance claim.</p></div>
         </div>
 
         <div class="cta-panel">
@@ -705,7 +940,7 @@ node tests/test-api.js</code></pre>
         <h3>Status</h3>
         <span class="footer-status"><span class="status-dot"></span>Functional · unaudited</span>
         <span class="footer-meta">v3.0.0</span>
-        <span class="footer-meta">Last reviewed 2026-10-23</span>
+        <span class="footer-meta">Last reviewed 2026-10-26</span>
       </div>
     </div>
     <div class="footer-bottom">
@@ -738,12 +973,13 @@ node tests/test-api.js</code></pre>
     <nav class="mobile-nav" aria-label="Mobile documentation navigation">
       <a href="#overview"><span>01</span>Overview</a>
       <a href="#quickstart"><span>02</span>Quick start</a>
-      <a href="#architecture"><span>03</span>Architecture</a>
-      <a href="#security"><span>04</span>Security model</a>
-      <a href="#api"><span>05</span>API reference</a>
-      <a href="#operations"><span>06</span>Operations</a>
-      <a href="#testing"><span>07</span>Testing</a>
-      <a href="#limits"><span>08</span>Limitations</a>
+      <a href="#tour"><span>03</span>Product tour</a>
+      <a href="#architecture"><span>04</span>Architecture</a>
+      <a href="#security"><span>05</span>Security model</a>
+      <a href="#api"><span>06</span>API reference</a>
+      <a href="#operations"><span>07</span>Operations</a>
+      <a href="#testing"><span>08</span>Testing</a>
+      <a href="#limits"><span>09</span>Limitations</a>
     </nav>
     <div class="mobile-nav-links">
       <a href="https://github.com/Nanymous/hodhod-docs" target="_blank" rel="noopener noreferrer">Docs repository <svg class="icon icon-xs" aria-hidden="true"><use href="#i-external"/></svg></a>

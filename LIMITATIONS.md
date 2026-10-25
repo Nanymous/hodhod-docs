@@ -8,9 +8,10 @@ This document records deliberate trade-offs and unfinished work. Do not describe
 - **No forward secrecy or post-compromise security.** Direct messages use long-term identity private keys to unwrap content keys. Anyone who obtains an identity private key (and the stored ephemeral wraps) can decrypt historical direct messages. Group keys are also wrapped to long-term identity keys. Nothing here is a double-ratchet protocol.
 - **Group rotation protects the future, not the past.** Removing a member creates a new key version for future messages, but the removed member keeps old group keys and can read history it already had access to. Rotation is not retroactive and depends on clients performing the required rekey.
 - **Device revocation cannot erase remote copies.** Revocation removes server-side device records/sessions and wraps. A revoked device that already cached the identity key or plaintext can still read what it has, and may decrypt future ciphertext if it can still obtain it.
-- **Metadata is not private.** The server sees accounts, chat membership, titles, timestamps, message sizes, message IDs, reactions, file sizes/MIME, IP addresses, user agents, and admin actions. It can perform traffic analysis and correlation.
+- **Metadata is not private.** The server sees accounts, chat membership, titles, timestamps, message sizes, message IDs, reactions, file sizes/MIME, profile photos, IP addresses, user agents, and admin actions. It can perform traffic analysis and correlation.
 - **The operator controls the client code.** Because the SPA is served by the same server, a malicious operator can serve modified JavaScript that leaks keys. Self-hosting, CSP, and reproducible builds reduce but do not eliminate this. There is no signed/pinned client distribution.
 - **Only content is end-to-end encrypted.** Profile fields, chat titles, join notes, verification reasons, reports, and similar metadata are stored in plaintext.
+- **Profile photos are not end-to-end encrypted.** An uploaded avatar is re-encoded and metadata-stripped, but the server stores a readable image and serves it through `GET /api/users/avatar`. The `chats`/`everyone` visibility setting is an API authorization rule, not a cryptographic guarantee; an operator with database/storage access can view every photo. Image captions, by contrast, remain inside the encrypted message payload.
 - **No independent audit.** The cryptographic design and implementation have automated tests but no third-party review. Do not treat test coverage as a security proof.
 - **No key transparency.** Safety-number comparison is manual. There is no public append-only directory that would make invisible key substitution detectable at scale.
 - **Compromised endpoints defeat the model.** XSS, malicious extensions, a compromised OS, or a coerced unlock can expose plaintext. The client keeps decrypted content and private keys in memory while unlocked; JavaScript cannot reliably zeroize memory.
@@ -37,13 +38,15 @@ This document records deliberate trade-offs and unfinished work. Do not describe
 - Redis is optional and disabled by default. If enabled while unreachable, it can add latency to requests until timeouts expire.
 - PHP's `post_max_size`/`upload_max_filesize` may be lower than the app's 50 MB limit depending on the host; verify the effective values.
 - The provided `.htaccess` guards the source tree and storage, but moving `storage/` outside the document root is still recommended for defense in depth.
+- The installer can record any base path and port and warns when Apache is not serving them yet, but it does not move files, add a `Listen` directive, or create a VirtualHost. Root and custom-host installs still require matching `DocumentRoot`/VirtualHost configuration.
 - There is no container image, systemd unit, or automated deployment pipeline in the repository.
 - No log rotation or centralized monitoring configuration is included.
 
 ## Testing gaps
 
-- There is no automated browser E2E suite. The SPA has unit tests and type checks. SPA login/unlock and the legacy admin dashboard were smoke-tested in headless Chrome (including the password-unlock call order and admin SVG icons), but send → file → admin mutation flows were not exercised end-to-end in a real browser.
-- Accessibility (keyboard, screen reader, contrast) has not been audited.
+- There is no automated browser E2E suite. The SPA has unit tests and type checks. SPA login/unlock, the legacy admin dashboard, the installer at the default path and at an alternate directory with a custom port, the join-request layout, and the main product screens at desktop widths and `390×844` were smoke-tested and captured in headless Chrome, but send → file → admin mutation flows were not exercised as committed end-to-end browser tests.
+- Accessibility (keyboard, screen reader, contrast) has not been independently audited. The UI has focus-visible states, labeled controls, dialog focus handling, and reduced-motion support, but this is not a WCAG conformance claim.
+- Profile-photo handling (upload, visibility transitions, deletion, quota/retention interaction) is covered by code paths and manual checks, not a dedicated automated suite.
 - Load, soak, and multi-node concurrency tests are not included.
 - The live API test creates records and expects a local admin fixture; it must not be pointed at production.
 - Error-path coverage for disk-full, Redis failure, and concurrent key rotations is limited.

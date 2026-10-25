@@ -1288,6 +1288,41 @@ code {
   font-size: 11px;
 }
 
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 34px;
+}
+
+.tour-grid .product-shot {
+  margin: 0;
+}
+
+.tour-shot figcaption {
+  line-height: 1.7;
+}
+
+.tour-shot figcaption strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.tour-mobile {
+  max-width: 390px;
+  margin: 22px auto 0;
+}
+
+.tour-wide {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 980px) {
+  .tour-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .flow {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
